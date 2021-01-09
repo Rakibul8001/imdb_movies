@@ -28,7 +28,7 @@
 
 	<body>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<a class="navbar-brand" href="{% url 'movie:movie_list' %}">Movie Server</a>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -48,11 +48,22 @@
 							>Home <span class="sr-only">(current)</span></a
 						>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Disabled</a>
+					<li class="nav-item dropdown">
+						<a
+							class="nav-link dropdown-toggle"
+							href="http://example.com"
+							id="dropdown01"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+							>Genres</a
+						>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" href="{% url 'movie:movie_category' 'action' %}">Action</a>
+							<a class="dropdown-item" href="{% url 'movie:movie_category' 'drama' %}">Drama</a>
+							<a class="dropdown-item" href="{% url 'movie:movie_category' 'comedy' %}">Comedy</a>
+							<a class="dropdown-item" href="{% url 'movie:movie_category' 'romance' %}">Romance</a>
+						</div>
 					</li>
 					<li class="nav-item dropdown">
 						<a
@@ -62,7 +73,25 @@
 							data-toggle="dropdown"
 							aria-haspopup="true"
 							aria-expanded="false"
-							>Dropdown</a
+							>Year</a
+						>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#"
+								>Something else here</a
+							>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a
+							class="nav-link dropdown-toggle"
+							href="http://example.com"
+							id="dropdown01"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+							>Language</a
 						>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
 							<a class="dropdown-item" href="#">Action</a>

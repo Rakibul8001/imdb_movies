@@ -2,10 +2,10 @@ from django.db import models
 
 # Create your models here.
 CATEGORY_CHOICES = (
-    ('A', 'ACTION'),
-    ('D', 'DRAMA'),
-    ('C', 'COMEDY'),
-    ('R', 'ROMANCE'),
+    ('action', 'ACTION'),
+    ('drama', 'DRAMA'),
+    ('comedy', 'COMEDY'),
+    ('romance', 'ROMANCE'),
 )
 
 LANGUAGE_CHOICES = (
@@ -19,12 +19,11 @@ STATUS_CHOICES = (
     ('TR', 'TOP RATED'),
 )
 
-
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to="movies")
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=1)
+    category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=2)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2)
     cast = models.CharField(max_length = 100)

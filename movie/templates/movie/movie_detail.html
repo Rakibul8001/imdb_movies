@@ -1,42 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="{{ object.image.url }}" class="img-fluid " alt="">
-            </div>
-            <div class="col-md-8">
-                <h2>{{ object.title }}</h2>
-                <h5>{{ object.year_of_production|date:'F jS Y' }}</h5>
-                <p>{{ object.description }}</p>
-                <p><a href="#">{{ object.cast }}</a></p>
-                <h4>{{ object.views_count }} views</h4>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ object.image.url }}" class="img-fluid " alt="">
         </div>
-        <!-- links -->
-        <div>
-            <h2>Links</h2>
-            <ul class="links">
-                <li><a>Download</a></li>
-                {% for link in links %}
-                    {% if link.link_type == 'D' %}
-                     <li><a href="{{ link.link }}">link{{ forloop.counter }}</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-
-            <ul class="links">
-                <li><a>Watch</a></li>
-                {% for link in links %}
-                
-                    {% if link.link_type == 'W' %}
-                        <li><a href="{{ link.link }}">link{{ forloop.counter }}</a></li>
-                    {% endif %}
-
-                {% endfor %}
-            </ul>
+        <div class="col-md-8">
+            <h2>{{ object.title }}</h2>
+            <h5>{{ object.year_of_production|date:'F jS Y' }}</h5>
+            <p>{{ object.description }}</p>
+            <p><a href="#">{{ object.cast }}</a></p>
+            <h4>{{ object.views_count }} views</h4>
         </div>
     </div>
+    <!-- links -->
+    <div>
+        <h2>Links</h2>
+        <ul class="links">
+            <li><a>Download Link:</a></li>
+            {% for link in links %}
+                {% if link.link_type == 'D' %}
+                    <li><a href="{{ link.link }}">link{{ forloop.counter }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+        <ul class="links">
+            <li><a>Watch Link:</a></li>
+            {% for link in links %}
+            
+                {% if link.link_type == 'W' %}
+                    <li><a href="{{ link.link }}">link{{ forloop.counter }}</a></li>
+                {% endif %}
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
 {% endblock content %}
     
