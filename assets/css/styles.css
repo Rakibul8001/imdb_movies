@@ -2,6 +2,6 @@
 	height: 200px;
 }
 
-ul.links li {
+ul#links li {
 	display:inline;
   }
