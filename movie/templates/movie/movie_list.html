@@ -5,6 +5,14 @@
 	{% if movie_category %}
 		<h4>{{ movie_category|title }} Movies</h4>
 	{% endif %}
+	<!-- showing movies by language -->
+	{% if movie_language %}
+		<h4>{{ movie_language|title }} Movies</h4>
+	{% endif %}
+	<!-- showing movies by year -->
+	{% if movie_year %}
+		<h4>{{ movie_year|title }} Movies</h4>
+	{% endif %}
 		
 
 	<!-- Example row of columns -->

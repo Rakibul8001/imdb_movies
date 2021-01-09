@@ -94,25 +94,20 @@
 							>Language</a
 						>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<a class="dropdown-item" href="#"
-								>Something else here</a
-							>
+							<a class="dropdown-item" href="{% url 'movie:movie_language' 'english' %}">English</a>
+							<a class="dropdown-item" href="{% url 'movie:movie_language' 'german' %}">German</a>
 						</div>
 					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input
-						class="form-control mr-sm-2"
-						type="text"
-						placeholder="Search"
+				<form class="form-inline my-2 my-lg-0" action="{% url 'movie:movie_search' %}" method="GET">
+					<input class="form-control mr-sm-2" 
+						name="query"
+						value="{{ request.GET.q }}"
+						type="text" 
+						placeholder="Search" 
 						aria-label="Search"
 					/>
-					<button
-						class="btn btn-outline-success my-2 my-sm-0"
-						type="submit"
-					>
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">
 						Search
 					</button>
 				</form>
