@@ -6,9 +6,8 @@ from .models import Movie
 
 class MovieList(ListView):
     model = Movie
-    # template_name = "TEMPLATE_NAME"
+    paginate_by = 1
 
 
 class MovieDetail(DetailView):
     model = Movie
-    # template_name = "TEMPLATE_NAME"

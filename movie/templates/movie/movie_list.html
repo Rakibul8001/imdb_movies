@@ -1,1 +1,58 @@
-<h1>Welcome to movie list</h1>
+{% extends 'base.html' %} 
+{% block content %}
+<div class="container">
+	<h2>Movie List</h2>
+	<hr />
+	<!-- Example row of columns -->
+	<div class="row">
+		{% for movie in object_list %}
+		<div class="col-md-3">
+			<div class="card">
+				<img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
+				<div class="card-body">
+					<h5 class="card-title">{{ movie.title }}</h5>
+					<p class="card-text">
+						{{ movie.description|striptags|truncatechars:50 }}
+					</p>
+					<a href="{% url 'movie_list' movie.id %}" class="btn btn-primary">View Details</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<!-- pagination -->
+
+	{% if is_paginated %}
+	<nav aria-label="Page navigation example">
+		<ul class="pagination mt-3">
+			{% if page_obj.has_previous %}
+			<li class="page-item">
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+			</li>
+			{% else %}
+			    <li class="disabled"></li>
+            {% endif %} 
+
+            {% for pages in page_obj.paginator.page_range %} 
+                {% if page_obj.number == pages %}
+                    <li class="page-item">
+                        <a class="page-link" href="#">{{ pages }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pages }}">{{ pages }}</a>
+                    </li>
+                {% endif %} 
+            {% endfor %} 
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+			{% else %}
+			    <li class="disabled"></li>
+			{% endif %}
+		</ul>
+	</nav>
+	{% endif %}
+</div>
+{% endblock %}
