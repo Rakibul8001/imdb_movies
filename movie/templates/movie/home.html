@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+    <h3>Recently Added</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="owl-carousel owl-theme">
+                {% for movie in recently_added %}
+                <div class="item">
+                    <div class="card mr-3 mb-3">
+                        <a href="{% url 'movie:movie_detail' movie.slug %}">
+                            <img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'movie:movie_detail' movie.slug %}"><h5 class="card-title">{{ movie.title }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3>Top Rated</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="owl-carousel owl-theme">
+                {% for movie in top_rated %}
+                <div class="item">
+                    <div class="card mr-3 mb-3">
+                        <a href="{% url 'movie:movie_detail' movie.slug %}">
+                            <img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'movie:movie_detail' movie.slug %}"><h5 class="card-title">{{ movie.title }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h3>Most Watched</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="owl-carousel owl-theme">
+                {% for movie in most_watched %}
+                <div class="item">
+                    <div class="card mr-3 mb-3">
+                        <a href="{% url 'movie:movie_detail' movie.slug %}">
+                            <img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'movie:movie_detail' movie.slug %}"><h5 class="card-title">{{ movie.title }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

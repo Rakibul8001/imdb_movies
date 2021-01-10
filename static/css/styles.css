@@ -1,7 +1,15 @@
-.card-top {
-	height: 200px;
+.card-top{
+	height: 160px;
 }
 
 ul.links li {
 	display:inline;
   }
+
+.slider img{
+	height: 550px;
+	width: 100%;
+}
+.card-body{
+	padding: 0px;
+}
