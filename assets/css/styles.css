@@ -1,7 +1,12 @@
-.card-top {
+/* .card-top {
 	height: 200px;
-}
+} */
 
-ul#links li {
+ul.links li {
 	display:inline;
   }
+.card{
+	height: 70px;
+	width: 90px;
+	overflow: hidden;
+}

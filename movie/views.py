@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+from django.views.generic.dates import YearArchiveView
 from .models import Movie, MovieLink
 # Create your views here.
 
 
 class MovieList(ListView):
     model = Movie
-    paginate_by = 1
+    paginate_by = 2
 
  
 class MovieDetail(DetailView):
@@ -26,7 +27,7 @@ class MovieDetail(DetailView):
 
 class MovieCategory(ListView):
     model = Movie
-    paginate_by = 1
+    paginate_by = 2
 
     def get_queryset(self):
         self.category = self.kwargs['category']
@@ -40,7 +41,7 @@ class MovieCategory(ListView):
 
 class MovieLanguage(ListView):
     model = Movie
-    paginate_by = 1
+    paginate_by = 2
 
     def get_queryset(self):
         self.language = self.kwargs['lang']
@@ -52,30 +53,23 @@ class MovieLanguage(ListView):
         context['movie_language'] = self.language
         return context
 
-class MovieYear(ListView):
-    model = Movie
-    paginate_by = 1
-
-    def get_queryset(self):
-        self.year_of_production = self.kwargs['year']
-        return Movie.objects.filter(year_of_production = self.year_of_production)
-
-    
-    def get_context_data(self, **kwargs):
-        context = super(MovieYear, self).get_context_data(**kwargs)
-        context['movie_year'] = self.year_of_production
-        return context
+class MovieYear(YearArchiveView):
+    queryset = Movie.objects.all()
+    date_field = "year_of_production"
+    make_object_list = True
+    allow_future = True
+    paginate_by = 2
     
 class MovieSearch(ListView):
     model = Movie
-    paginate_by = 1
+    paginate_by = 2
     
     def get_queryset(self):
         query = self.request.GET.get('query')
         if query:
-            object_list = Movie.objects.filter(title__icontains= query)
+            object_list = self.model.objects.filter(title__icontains= query)
         else:
-            object_list= Movie.objects.none()
+            object_list= self.model.objects.none()
         return object_list
 
 
