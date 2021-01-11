@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="{% url 'movie:movie_list' %}">Movie Server</a>
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="http://example.com"
+                    id="dropdown01"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Genre</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'movie:movie_genre' 'hollywood' %}">Hollywood</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_genre' 'bollywood' %}">Bollywood</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_genre' 'tamil' %}">Tamil</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_genre' 'foreign' %}">Foreign</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_genre' 'chainese' %}">Chainese</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="http://example.com"
+                    id="dropdown01"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Feature</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'movie:movie_category' 'action' %}">Action</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_category' 'drama' %}">Drama</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_category' 'comedy' %}">Comedy</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_category' 'romance' %}">Romance</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_category' 'horror' %}">Horror</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="http://example.com"
+                    id="dropdown01"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Year</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'movie:movie_year' year=2021 %}">2021</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_year' year=2020 %}">2020</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_year' year=2019 %}">2019</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_year' year=2018 %}">2018</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_year' year=2017 %}">2017</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a
+                    class="nav-link dropdown-toggle"
+                    href="http://example.com"
+                    id="dropdown01"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    >Language</a
+                >
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{% url 'movie:movie_language' 'english' %}">English</a>
+                    <a class="dropdown-item" href="{% url 'movie:movie_language' 'german' %}">German</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="{% url 'movie:movie_search' %}" method="GET">
+            <input class="form-control form-control-sm mr-sm-2" 
+                name="query"
+                value="{{ request.GET.q }}"
+                type="text" 
+                placeholder="Search Movies.." 
+                aria-label="Search"
+            />
+            <button class="btn btn-success btn-sm my-2 my-sm-0" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</nav>

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="container">
+<div class="container mt-3">
 
-    <h2>{{ object.title }} Official Trailer</h2>
+    <h2 id="trailer">{{ object.title }} Official Trailer</h2>
     <div class="embed-responsive embed-responsive-16by9 mb-5">
-      <iframe class="embed-responsive-item" width="560" height="315" src="{{ object.movie_trailer }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe class="embed-responsive-item" src="{{ object.movie_trailer }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <!-- End Trailer -->
     <div class="row">
@@ -15,10 +16,9 @@
             <h2>{{ object.title }}</h2>
             <h5>{{ object.year_of_production|date:'F jS Y' }}</h5>
             <p>{{ object.description|safe }}</p>
-            <p>Actors: <a href="#">{{ object.cast }}</a></p>
-            <p>Genre: <a href="#">{{ object.category }}</a></p>
-            <h4>{{ object.views_count }} views</h4>
-                
+            <h4>Actors: <a href="#">{{ object.cast }}</a></h4>
+            <h4>Genre: <a href="#">{{ object.category }}</a></h4>
+            <h4>{{ object.views_count }} views</h4>  
         </div>
     </div>
     <!-- links -->
@@ -28,7 +28,7 @@
             <li><a>Download Link:</a></li>
             {% for link in links %}
                 {% if link.link_type == 'D' %}
-                    <li><a href="{{ link.link }}">link{{ forloop.counter }}</a></li>
+                    <li><a href="{{ link.link }}" class="btn btn-danger btn-sm">link{{ forloop.counter }}</a></li>
                 {% endif %}
             {% endfor %}
         </ul>
@@ -36,9 +36,9 @@
         <ul class="links">
             <li><a>Watch Link:</a></li>
             {% for link in links %}
-            
+
                 {% if link.link_type == 'W' %}
-                    <li><a href="{{ link.link }}">link{{ forloop.counter }}</a></li>
+                    <li><a href="{{ link.link }}" class="btn btn-warning btn-sm">link{{ forloop.counter }}</a></li>
                 {% endif %}
 
             {% endfor %}
@@ -48,21 +48,23 @@
     <h3>Related Movies</h3>
     <hr/>
     <div class="row">
-		{% for movie in related_movie %}
-		<div class="col-12 col-md-3 mb-3 mt-3">
-			<div class="card">
-				<img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
-				<div class="card-body">
-					<h5 class="card-title">{{ movie.title }}</h5>
-					<p class="card-text">
-						{{ movie.description|striptags|truncatechars:50 }}
-					</p>
-					<a href="{% url 'movie:movie_detail' movie.slug %}" class="btn btn-primary">View Details</a>
-				</div>
-			</div>
-		</div>
-		{% endfor %}
-	</div>
+        <div class="col-md-12">
+            <div class="owl-carousel owl-theme">
+                {% for movie in related_movie %}
+                <div class="item">
+                    <div class="card mr-3 mb-3">
+                        <a href="{% url 'movie:movie_detail' movie.slug %}">
+                            <img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
+                        </a>
+                        <div class="card-body text-center " style="background-color: #6c757d;">
+                            <a href="{% url 'movie:movie_detail' movie.slug %}" style="color:white"><h5 class="card-title">{{ movie.title }}</h5></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

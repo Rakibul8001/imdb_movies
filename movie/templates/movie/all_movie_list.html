@@ -1,25 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div class="container">	
-	<!-- showing movies by category -->
-	{% if movie_genre %}
-		<h4>{{ movie_genre|title }} Movies</h4>
-	{% endif %}
-	{% if movie_category %}
-		<h4>{{ movie_category|title }} Movies</h4>
-	{% endif %}
-	<!-- showing movies by language -->
-	{% if movie_language %}
-		<h4>{{ movie_language|title }} Movies</h4>
-	{% endif %}
-
-	
-	{% if search_query %}
-		<h4>Search for: <span><b>{{ search_query }}</b></span></h4>
-	{% endif %}
-		
-		
-
+    <h3 style="color: orange;">All Movies</h3>
 	<!-- Example row of columns -->
 	<div class="row">
 		{% for movie in object_list %}

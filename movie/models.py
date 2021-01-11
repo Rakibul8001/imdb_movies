@@ -3,11 +3,19 @@ from django.utils.text import slugify
 from django.utils import timezone
 
 # Create your models here.
+GENRE_CHOICES = (
+    ('hollywood', 'HOLLYWOOD'),
+    ('bollywood', 'BOLLYWOOD'),
+    ('tamil', 'TAMIL'),
+    ('foreign', 'FOREIGN'),
+    ('chainese', 'CHAINESE'),
+)
 CATEGORY_CHOICES = (
     ('action', 'ACTION'),
     ('drama', 'DRAMA'),
     ('comedy', 'COMEDY'),
     ('romance', 'ROMANCE'),
+    ('horror', 'HORROR'),
 )
 
 LANGUAGE_CHOICES = (
@@ -25,6 +33,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to="movies")
+    genre = models.CharField(choices=GENRE_CHOICES, max_length=15)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=10)
     language = models.CharField(choices=LANGUAGE_CHOICES, max_length=10)
     status = models.CharField(choices=STATUS_CHOICES, max_length=2)

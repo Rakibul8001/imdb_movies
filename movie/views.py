@@ -18,9 +18,15 @@ class HomeView(ListView):
         
      
 
+# class MovieList(ListView):
+#     model = Movie
+#     paginate_by = 12
+
 class MovieList(ListView):
     model = Movie
-    paginate_by = 2
+    template_name= 'movie/all_movie_list.html'
+    paginate_by = 12
+
 
  
 class MovieDetail(DetailView):
@@ -40,9 +46,23 @@ class MovieDetail(DetailView):
         return context
 
 
+class MovieGenre(ListView):
+    model = Movie
+    paginate_by = 12
+
+    def get_queryset(self):
+        self.genre = self.kwargs['genre']
+        return Movie.objects.filter(genre = self.genre)
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(MovieGenre, self).get_context_data(**kwargs)
+        context['movie_genre'] = self.genre
+        return context
+
 class MovieCategory(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 12
 
     def get_queryset(self):
         self.category = self.kwargs['category']
@@ -56,7 +76,7 @@ class MovieCategory(ListView):
 
 class MovieLanguage(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 12
 
     def get_queryset(self):
         self.language = self.kwargs['lang']
@@ -73,11 +93,11 @@ class MovieYear(YearArchiveView):
     date_field = "year_of_production"
     make_object_list = True
     allow_future = True
-    paginate_by = 2
+    paginate_by = 12
     
 class MovieSearch(ListView):
     model = Movie
-    paginate_by = 2
+    paginate_by = 12
     
     def get_queryset(self):
         query = self.request.GET.get('query')
@@ -86,5 +106,10 @@ class MovieSearch(ListView):
         else:
             object_list= self.model.objects.none()
         return object_list
+
+    def get_context_data(self, **kwargs):
+        context = super(MovieSearch, self).get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('query')
+        return context
 
 

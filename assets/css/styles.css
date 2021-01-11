@@ -1,5 +1,5 @@
-.card-top {
-	height: 200px;
+.card-top{
+	height: 160px;
 }
 
 ul.links li {
@@ -7,6 +7,13 @@ ul.links li {
   }
 
 .slider img{
-	height: 550px;
-	width: 100%;
+	height: 515px;
+	width: 50%;
+}
+.card-body{
+	padding: 0px;
+	background-color: gray;
+}
+.page-link{
+	background-color: orange;
 }

@@ -1,47 +1,32 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div class="container">	
-	<!-- showing movies by category -->
-	{% if movie_category %}
-		<h4>{{ movie_category|title }} Movies</h4>
-	{% endif %}
-	<!-- showing movies by language -->
-	{% if movie_language %}
-		<h4>{{ movie_language|title }} Movies</h4>
-	{% endif %}
-	<!-- showing movies by year -->
-	{% if movie_year %}
-		<h4>{{ movie_year|title }} Movies</h4>
-	{% endif %}
-		
 
 	<!-- Example row of columns -->
 	<div class="row">
 		{% for movie in object_list %}
 		<div class="col-12 col-md-3 mb-3 mt-3">
-			<div class="card">
-				<img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
-				<div class="card-body">
-					<h5 class="card-title">{{ movie.title }}</h5>
-					<p class="card-text">
-						{{ movie.description|striptags|truncatechars:50 }}
-					</p>
-					<a href="{% url 'movie:movie_detail' movie.id %}" class="btn btn-primary">View Details</a>
+			<div class="card mr-3 mb-3">
+				<a href="{% url 'movie:movie_detail' movie.slug %}">
+					<img class="card-img-top card-top img-fluid" src="{{ movie.image.url }}" alt="Card image cap"/>
+				</a>
+				<div class="card-body text-center " style="background-color: #6c757d;">
+					<a href="{% url 'movie:movie_detail' movie.slug %}" style="color:white"><h5 class="card-title">{{ movie.title }}</h5></a>
 				</div>
 			</div>
 		</div>
-		{% empty %}
-			<p>No Movies Are Available In This Category..</p>
 		{% endfor %}
+
 	</div>
 	<!-- pagination -->
 
 	{% if is_paginated %}
-	<nav aria-label="Page navigation example">
+	<nav aria-label="Page navigation example" >
 		<ul class="pagination mt-3">
 			{% if page_obj.has_previous %}
 			<li class="page-item">
-				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}" 
+					style="background-color: orange; color:white">Previous</a>
 			</li>
 			{% else %}
 			    <li class="disabled"></li>
@@ -50,17 +35,19 @@
             {% for pages in page_obj.paginator.page_range %} 
                 {% if page_obj.number == pages %}
                     <li class="page-item">
-                        <a class="page-link" href="#">{{ pages }}</a>
+                        <a class="page-link" href="#" style="background-color: orange; color:white">{{ pages }}</a>
                     </li>
                 {% else %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{ pages }}">{{ pages }}</a>
+						<a class="page-link" href="?page={{ pages }}" 
+							style="background-color: orange; color:white">{{ pages }}</a>
                     </li>
                 {% endif %} 
             {% endfor %} 
             {% if page_obj.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+					<a class="page-link" href="?page={{ page_obj.next_page_number }}" 
+						style="background-color: orange; color:white">Next</a>
                 </li>
 			{% else %}
 			    <li class="disabled"></li>
